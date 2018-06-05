@@ -462,13 +462,13 @@ classdef Link < handle
                 return;
             end
             
-            if isa(v,'sym') && ~isempty(findsym(v))
+            if isa(v,'sym') && ~isempty(symvar(v))
                 l.Tc = sym('Tc');
-            elseif isa(v,'sym') && isempty(findsym(v))
+            elseif isa(v,'sym') && isempty(symvar(v))
                 v = double(v);
             end
             
-            if length(v) == 1  ~isa(v,'sym')
+            if length(v) == 1 && ~isa(v,'sym')
                 l.Tc = [v -v]; 
             elseif length(v) == 2 && ~isa(v,'sym')
                 if v(1) < v(2)
